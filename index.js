@@ -20,8 +20,11 @@ ingrButtons.forEach((optionBtn) => {
       evt.currentTarget.parentElement.nextElementSibling.style.display ='block';
     
       tradegoodChosen = evt.currentTarget.id;
-      NeededInv.addGoodToInv(TradeGoods, TradeGoods[tradegoodChosen]);
+
+      //This updates the needed inventory with, as you might expect, what's needed
+      NeededInv.addGoodToInv(TradeGoods, tradegoodChosen);
       
+      //This creates all the inputs in the html file
       TradeGoods[tradegoodChosen].ingredients.forEach((ingr) => {
         makeIngrInput(ingr);
       });

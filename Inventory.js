@@ -193,7 +193,7 @@ export class Inventory {
         this["_pure ferrite"] = 0;
       }
     } else {
-      console.log("failure to assign ammonia.  Check input type");
+      console.log("failure to assign pure ferrite.  Check input type");
     }
   }
 
@@ -298,15 +298,35 @@ export class ShoppingListInventory extends Inventory {
   }
   
   addGoodToInv(tradegoodListObject, tradegood) {
-    if (tradegoodListObject[tradegood].baseLevel) {
-      tradegood.ingredients.forEach((ingr) => {
-        this[ingr] = tradegood[ingr];
+
+    tradegood = tradegood.replace(/\s/g, '');
+    console.log(tradegoodListObject[tradegood].baseLevel);
+
+    if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
+
+      tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+
+        console.log(`this[ingr] or ${ingr} is ${this[ingr]}`);
+        //Because of how the setters work, this HAS to be =, not +=, to work properly
+        
+        this[ingr] = tradegoodListObject[tradegood][ingr];
+
+        console.log(`this[ingr] or ${ingr} following assignment is ${this[ingr]}`);
+
       });
+
+      console.log(this);
+
       return;
-    } else {
+
+    } 
+    else 
+    {
+
       tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
         this.addGoodToInv(tradegoodListObject, ingr);
       });
+
     }
     
     /*
