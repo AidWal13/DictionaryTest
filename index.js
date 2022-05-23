@@ -24,11 +24,12 @@ ingrButtons.forEach((optionBtn) => {
       //This updates the needed inventory with, as you might expect, what's needed
       NeededInv.addGoodToInv(TradeGoods, tradegoodChosen);
       
+      createIngrInputs(TradeGoods, tradegoodChosen)
       //This creates all the inputs in the html file
-      TradeGoods[tradegoodChosen].ingredients.forEach((ingr) => {
+      /*TradeGoods[tradegoodChosen].ingredients.forEach((ingr) => {
         makeIngrInput(ingr);
-      });
-      
+      });*/
+
       //this says, go to the parent element of the option button, which is the current target that the event listener is attached to, then go to the next sibling.  Thats how it finds the right place to add the submit button. 
       addSubmitButton(evt.currentTarget.parentElement.nextElementSibling);
     });
@@ -40,6 +41,37 @@ ingrButtons.forEach((optionBtn) => {
 
 
 //Functions
+
+function createIngrInputs(tradegoodListObject, tradegood) {
+  tradegood = tradegood.replace(/\s/g, '');
+    console.log(` trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
+
+    if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
+
+      tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+        
+        console.log(`About to make input element for ${ingr}`);
+
+        //ACTUAL ASSIGNMENT OCCURS HERE
+        //Because of how the setters work, this HAS to be =, not +=, to work properly
+        makeIngrInput(ingr);
+
+        console.log(`Made input for ${ingr}.`);
+
+      });
+
+      return;
+
+    } 
+    else 
+    {
+
+      tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+        createIngrInputs(tradegoodListObject, ingr);
+      });
+
+    }
+}
 
 function makeIngrInput(ingredient) {
   //Create the label element

@@ -311,7 +311,9 @@ export class Inventory {
     }
   }
   
-  
+  iterateThroughIngredients(tradegoodListObject, tradegood) {
+
+  }
   
   //STATIC ELEMENTS
   
@@ -342,6 +344,7 @@ export class ShoppingListInventory extends Inventory {
         
         console.log(`this[ingr] or ${ingr} is ${this[ingr]}`);
 
+        //ACTUAL ASSIGNMENT OCCURS HERE
         //Because of how the setters work, this HAS to be =, not +=, to work properly
         this[ingr] = tradegoodListObject[tradegood][ingr];
 
