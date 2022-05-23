@@ -253,6 +253,30 @@ export const nitrogensalt = {
   }
 };
 
+export const polyfibre = {
+  name: 'polyfibre',
+  baseLevel: true,
+  ingredients: ['star bulb', 'cactus flesh'],
+  '_star bulb': 200,
+  '_cactus flesh': 100,
+
+  get 'star bulb'() {
+    return this['_star bulb'];
+  },
+
+  get 'cactus flesh'() {
+    return this['_cactus flesh'];
+  },
+
+  set 'star bulb'(amt) {
+    console.log("WARNING: NOT ALLOWED TO EDIT THE AMOUNT REQUIRED FOR A RECIPE");
+  },
+
+  set 'cactus flesh'(amt) {
+    console.log("WARNING: NOT ALLOWED TO EDIT THE AMOUNT REQUIRED FOR A RECIPE");
+  }
+}
+
 export const thermiccondensate = {
   name: 'thermiccondensate',
   baseLevel: true,

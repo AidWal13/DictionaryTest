@@ -2,6 +2,7 @@ export class Inventory {
   
   constructor() {
     this['_ammonia'] = 0; //GS done
+    this['_cactus flesh'] = 0;
     this['_condensed carbon'] = 0; //GS done
     this['_dioxite'] = 0; //GS done
     this['_faecium'] = 0; //GS done
@@ -15,6 +16,7 @@ export class Inventory {
     this['_pyrite'] = 0; //GS done
     this['_radon'] = 0; //GS done
     this['_solanium'] = 0; //GS done
+    this['_star bulb'] = 0;
     this["_sulphurine"] = 0; //GS done
     this['_uranium'] = 0; //GS done
   }
@@ -50,6 +52,22 @@ export class Inventory {
       }
     } else {
       console.log("failure to assign condensed carbon.  Check input type");
+    }
+  }
+
+  //CACTUS FLESH-------------------------------------------
+  get 'cactus flesh'() {
+    return this["_cactus flesh"];
+  }
+  
+  set 'cactus flesh'(amt) {
+    if (typeof amt === 'number'){
+      this["_cactus flesh"] += amt;
+      if (this["_cactus flesh"] <= 0) {
+        this["_cactus flesh"] = 0;
+      }
+    } else {
+      console.log("failure to assign cactus flesh.  Check input type");
     }
   }
 
@@ -101,7 +119,7 @@ export class Inventory {
     }
   }
 
-  //GAMMA ROOT
+  //GAMMA ROOT-------------------------------------------
   get 'gamma root'() {
     return this['_gamma root'];
   }
@@ -117,7 +135,7 @@ export class Inventory {
     }
   }
 
-  //IONISED COBALT
+  //IONISED COBALT-------------------------------------------
   get 'ionised cobalt'() {
     return this['_ionised cobalt'];
   }
@@ -197,7 +215,7 @@ export class Inventory {
     }
   }
 
-  //PYRITE
+  //PYRITE-------------------------------------------
   get pyrite() {
     return this['_pyrite'];
   }
@@ -213,7 +231,7 @@ export class Inventory {
     }
   }
 
-  //RADON
+  //RADON-------------------------------------------
   get radon() {
     return this['_radon'];
   }
@@ -229,7 +247,7 @@ export class Inventory {
     }
   }
 
-  //SOLANIUM
+  //SOLANIUM-------------------------------------------
   get solanium() {
     return this['_solanium'];
   }
@@ -242,6 +260,22 @@ export class Inventory {
       }
     } else {
       console.log("Failure to assign solanium.  Check input type");
+    }
+  }
+
+  //STAR BULB-------------------------------------------
+  get 'star bulb'() {
+    return this['_star bulb'];
+  }
+  
+  set 'star bulb'(amt) {
+    if (typeof amt === 'number'){
+      this["_star bulb"] += amt;
+      if (this["_star bulb"] <= 0) {
+        this["_star bulb"] = 0;
+      }
+    } else {
+      console.log("failure to assign star bulb.  Check input type");
     }
   }
 
@@ -300,22 +334,20 @@ export class ShoppingListInventory extends Inventory {
   addGoodToInv(tradegoodListObject, tradegood) {
 
     tradegood = tradegood.replace(/\s/g, '');
-    console.log(tradegoodListObject[tradegood].baseLevel);
+    console.log(` trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
 
     if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
 
       tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
-
-        console.log(`this[ingr] or ${ingr} is ${this[ingr]}`);
-        //Because of how the setters work, this HAS to be =, not +=, to work properly
         
+        console.log(`this[ingr] or ${ingr} is ${this[ingr]}`);
+
+        //Because of how the setters work, this HAS to be =, not +=, to work properly
         this[ingr] = tradegoodListObject[tradegood][ingr];
 
         console.log(`this[ingr] or ${ingr} following assignment is ${this[ingr]}`);
 
       });
-
-      console.log(this);
 
       return;
 
