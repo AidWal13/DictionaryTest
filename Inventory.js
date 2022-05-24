@@ -417,7 +417,7 @@ export class UserInventory extends Inventory {
 
     relevantInputs.forEach((input) => {
       let inputtedValue = parseInt(input.value);
-      let ingr = input.id;
+      let ingr = input.name;
       this[ingr] = inputtedValue;
     });
     console.log(this);

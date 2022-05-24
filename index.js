@@ -97,7 +97,7 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
     let inputEl = document.createElement('input');
     inputEl.id = ingredient.replace(/\s/g, '');
     inputEl.type = "number";
-    inputEl.name = ingredient.replace(/\s/g, '');
+    inputEl.name = ingredient;
     inputEl.classList.add('ingrInput');
       
     inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
