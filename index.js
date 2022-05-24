@@ -50,7 +50,7 @@ function createIngrInputs(tradegoodListObject, tradegood) {
         
         console.log(`About to make input element for ${ingr}`);
 
-        //ACTUAL ASSIGNMENT OCCURS HERE
+        //ELEMENT IS MADE HERE
         //Because of how the setters work, this HAS to be =, not +=, to work properly
         makeIngrInput(tradegoodListObject, tradegood, ingr);
 
@@ -72,26 +72,44 @@ function createIngrInputs(tradegoodListObject, tradegood) {
 }
 
 function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
-  console.log(`Within Making the Input function: , ${tradegoodListObject[tradegood].name}, ${ingredient}`);
+  console.log(`Within Making the Input function: ${tradegoodListObject[tradegood].name}, ${ingredient.replace(/\s/g, '')}`);
 
-  //Create the label element
-  let labelEl = document.createElement('label');
-  labelEl.innerHTML = ingredient;
-  labelEl.setAttribute('for', ingredient.replace(/\s/g, ''));
+  //if an input element exists with the id name of the ingredient input into this function, add to the placeholder and return
+  if (document.querySelector(`#divOfInputs input#${ingredient.replace(/\s/g, '')}`)) {
+
+    let alreadyCreatedEl = document.querySelector(`#divOfInputs input#${ingredient.replace(/\s/g, '')}`);
+
+    console.log(`placeholder value = ${alreadyCreatedEl.placeholder}`)
+    let currentPlaceholder = parseInt(alreadyCreatedEl.placeholder);
+
+    currentPlaceholder = currentPlaceholder + tradegoodListObject[tradegood][ingredient];
+    alreadyCreatedEl.placeholder = currentPlaceholder;
+    return;
+
+  } else {
+
+    //Create the label element
+    let labelEl = document.createElement('label');
+    labelEl.innerHTML = ingredient;
+    labelEl.setAttribute('for', ingredient.replace(/\s/g, ''));
+      
+    //Create the input element
+    let inputEl = document.createElement('input');
+    inputEl.id = ingredient.replace(/\s/g, '');
+    inputEl.type = "number";
+    inputEl.name = ingredient.replace(/\s/g, '');
+    inputEl.classList.add('ingrInput');
+      
+    inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
     
-  //Create the input element
-  let inputEl = document.createElement('input');
-  inputEl.id = ingredient;
-  inputEl.type = "number";
-  inputEl.name = ingredient.replace(/\s/g, '');
-  inputEl.classList.add('ingrInput');
-    
-  inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
+    let div = document.getElementById("divOfInputs");
+    div.appendChild(labelEl);
+    div.appendChild(inputEl);
+    div.appendChild(document.createElement("br"));
+  }
+
+
   
-  let div = document.getElementById("divOfInputs");
-  div.appendChild(labelEl);
-  div.appendChild(inputEl);
-  div.appendChild(document.createElement("br"));
 }
 
 function addSubmitButton(el) {
