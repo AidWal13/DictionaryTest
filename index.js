@@ -13,8 +13,6 @@ let ingrButtons = document.querySelectorAll(".option");
 
 
 ingrButtons.forEach((optionBtn) => {
-    console.log(`Event Listener Added to: ${optionBtn}.`);
-
     optionBtn.addEventListener('click', (evt) => {
       evt.currentTarget.parentElement.style.display ='none';
       evt.currentTarget.parentElement.nextElementSibling.style.display ='block';
@@ -44,7 +42,7 @@ ingrButtons.forEach((optionBtn) => {
 
 function createIngrInputs(tradegoodListObject, tradegood) {
   tradegood = tradegood.replace(/\s/g, '');
-    console.log(` trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
+    console.log(`Selected trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
 
     if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
 
@@ -54,7 +52,7 @@ function createIngrInputs(tradegoodListObject, tradegood) {
 
         //ACTUAL ASSIGNMENT OCCURS HERE
         //Because of how the setters work, this HAS to be =, not +=, to work properly
-        makeIngrInput(ingr);
+        makeIngrInput(tradegoodListObject, tradegood, ingr);
 
         console.log(`Made input for ${ingr}.`);
 
@@ -73,7 +71,9 @@ function createIngrInputs(tradegoodListObject, tradegood) {
     }
 }
 
-function makeIngrInput(ingredient) {
+function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
+  console.log(`Within Making the Input function: , ${tradegoodListObject[tradegood].name}, ${ingredient}`);
+
   //Create the label element
   let labelEl = document.createElement('label');
   labelEl.innerHTML = ingredient;
@@ -85,8 +85,8 @@ function makeIngrInput(ingredient) {
   inputEl.type = "number";
   inputEl.name = ingredient.replace(/\s/g, '');
   inputEl.classList.add('ingrInput');
-  inputEl.placeholder = TradeGoods[tradegoodChosen][ingredient];
     
+  inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
   
   let div = document.getElementById("divOfInputs");
   div.appendChild(labelEl);
