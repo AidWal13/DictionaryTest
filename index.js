@@ -1,4 +1,4 @@
-import { Inventory , UserInventory , ShoppingListInventory } from './Inventory.js';
+import { Inventory , UserInventory , ShoppingListInventory, RemainingInventory } from './Inventory.js';
 import * as TradeGoods from './TradeGoods.js';
 
 //ACTUAL CODING -------------------------------------------------------------------------
@@ -6,11 +6,11 @@ import * as TradeGoods from './TradeGoods.js';
 let tradegoodChosen;
 const UserInv = new UserInventory();
 const NeededInv = new ShoppingListInventory();
+const RemainingInv = new RemainingInventory();
 const collectInputs = UserInv.collectInputs.bind(UserInv);
 
 //get all buttons and add event listeners
 let ingrButtons = document.querySelectorAll(".option");
-
 
 ingrButtons.forEach((optionBtn) => {
     optionBtn.addEventListener('click', (evt) => {
@@ -107,9 +107,6 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
     div.appendChild(inputEl);
     div.appendChild(document.createElement("br"));
   }
-
-
-  
 }
 
 function addSubmitButton(el) {
@@ -117,15 +114,17 @@ function addSubmitButton(el) {
   submitButton.type = "submit";
   submitButton.id = "ingredientSubmit";
   submitButton.addEventListener("click", collectInputs);
-  submitButton.addEventListener("click", testFunc);
+  submitButton.addEventListener("click", makeIngrResults);
   
   //let div = document.getElementById("divOfInputs");
   el.appendChild(document.createElement("br"));
   el.appendChild(submitButton);
 }
 
-function testFunc() {
-  console.log('within test function');
+function makeIngrResults() {
+  //This function needs to:
+  //
+  RemainingInv.sayHowMuchIsRemaining(UserInv, NeededInv);
 }
 
 

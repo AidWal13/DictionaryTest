@@ -311,10 +311,6 @@ export class Inventory {
     }
   }
   
-  iterateThroughIngredients(tradegoodListObject, tradegood) {
-
-  }
-  
   //STATIC ELEMENTS
   
   static haveEnoughOf(ingredient, ingredientInventory, userInventory) {
@@ -357,42 +353,10 @@ export class ShoppingListInventory extends Inventory {
     } 
     else 
     {
-
       tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
         this.addGoodToInv(tradegoodListObject, ingr);
       });
-
     }
-    
-    /*
-    if (tradegood.baseLevel) {
-
-      tradegood.ingredients.forEach((ingr) => {
-        this[ingr] = tradegood[ingr];
-      });
-
-    } else {
-
-      console.log(`The tradegood that isnt base level is: ${tradegood.name}`)
-
-      //for each ingredient of the inputted Trade Good
-      tradegood.ingredients.forEach((subIngr) => {
-
-        //take care of cases where the name is two words with a space
-        subIngr = subIngr.replace(/\s/g, '');
-
-        console.log(`Console.logging the tradegoodListObject[subIngr]: ${tradegoodListObject[subIngr].name}`);
-
-        tradegoodListObject[subIngr].ingredients.forEach((subsubingr) => {
-          console.log(`${subsubingr} is being assigned ${tradegoodListObject[subIngr][subsubingr]}`)
-          this[subsubingr] = tradegoodListObject[subIngr][subsubingr];
-        });
-      });
-
-      console.log(this);
-      
-    }*/
-
   }
 }
 
@@ -413,13 +377,27 @@ export class UserInventory extends Inventory {
   
   collectInputs() {
     let relevantInputs = document.querySelectorAll("#divOfInputs .ingrInput");
-    console.log(relevantInputs);
 
     relevantInputs.forEach((input) => {
+      if ( input.value === "" ) {
+        console.log(`Need to input what you have of ${input.name}`)
+      } else {
       let inputtedValue = parseInt(input.value);
       let ingr = input.name;
       this[ingr] = inputtedValue;
+      }
     });
     console.log(this);
+  }
+}
+
+export class RemainingInventory extends Inventory {
+  constructor() {
+    super()
+    this._relevantIngrs = [];
+  }
+
+  sayHowMuchIsRemaining(userinv, neededinv) {
+    console.log(`We are all the way inside` + this);
   }
 }
