@@ -1,5 +1,6 @@
 export const aronium = {
   name: 'aronium',
+  id: 'Aronium',
   baseLevel: true,
   ingredients: ['paraffinium', 'ionised cobalt'],
   _paraffinium: 50,
@@ -24,6 +25,7 @@ export const aronium = {
 
 export const dirtybronze = {
   name: 'dirtybronze',
+  id: 'Dirty Bronze',
   baseLevel: true,
   ingredients: ['pyrite', 'pure ferrite'],
   _pyrite: 50,
@@ -48,6 +50,7 @@ export const dirtybronze = {
 
 export const enrichedcarbon = {
   name: 'enrichedcarbon',
+  id: 'Enriched Carbon',
   baseLevel: true,
   ingredients: ['radon', 'condensed carbon'],
   _radon: 250,
@@ -72,6 +75,7 @@ export const enrichedcarbon = {
 
 export const glass = {
   name: 'glass',
+  id: 'Glass',
   baseLevel: true,
   ingredients: ['frost crystal'],
   '_frost crystal': 40,
@@ -87,6 +91,7 @@ export const glass = {
 
 export const grantine = {
   name: 'grantine',
+  id: 'Grantine',
   baseLevel: true,
   ingredients: ['dioxite', 'ionised cobalt'],
   _dioxite: 50,
@@ -111,6 +116,7 @@ export const grantine = {
 
 export const heatcapacitor = {
   name: 'heatcapacitor',
+  id: 'Heat Capacitor',
   baseLevel: true,
   ingredients: ['frost crystal', 'solanium'],
   '_frost crystal': 100,
@@ -135,6 +141,7 @@ export const heatcapacitor = {
 
 export const herox = {
   name: 'herox',
+  id: 'Herox',
   baseLevel: true,
   ingredients: ['ammonia', 'ionised cobalt'],
   _ammonia: 50,
@@ -159,6 +166,7 @@ export const herox = {
 
 export const lemmium = {
   name: 'lemmium',
+  id: 'Lemmium',
   baseLevel: true,
   ingredients: ['uranium', 'pure ferrite'],
   _uranium: 50,
@@ -183,6 +191,7 @@ export const lemmium = {
 
 export const lubricant = {
   name: 'lubricant',
+  id: 'Lubricant',
   baseLevel: true,
   ingredients: ['faecium', 'gamma root'],
   _faecium: 50,
@@ -207,6 +216,7 @@ export const lubricant = {
 
 export const magnogold = {
   name: 'magnogold',
+  id: "Magno-gold",
   baseLevel: true,
   ingredients: ['phosphorus', 'ionised cobalt'],
   _phosphorus: 50,
@@ -231,6 +241,7 @@ export const magnogold = {
 
 export const nitrogensalt = {
   name: 'nitrogensalt',
+  id: 'Nitrogen Salt',
   baseLevel: true,
   ingredients: ['nitrogen', 'condensed carbon'],
   _nitrogen: 250,
@@ -255,6 +266,7 @@ export const nitrogensalt = {
 
 export const polyfibre = {
   name: 'polyfibre',
+  id: 'Poly Fibre',
   baseLevel: true,
   ingredients: ['star bulb', 'cactus flesh'],
   '_star bulb': 200,
@@ -279,6 +291,7 @@ export const polyfibre = {
 
 export const thermiccondensate = {
   name: 'thermiccondensate',
+  id: 'Thermic Condensate',
   baseLevel: true,
   ingredients: ['sulphurine', 'condensed carbon'],
   _sulphurine: 250,
@@ -311,6 +324,7 @@ export const thermiccondensate = {
 
 export const circuitboard = {
   name: 'circuitboard',
+  id: 'Circuit Board',
   baseLevel: false,
   ingredients: ['heat capacitor', 'poly fibre'],
   '_heat capacitor': 1,
@@ -335,6 +349,7 @@ export const circuitboard = {
 
 export const cryogenicchamber = {
   name: 'cryogenicchamber',
+  id: 'Cryogenic Chamber',
   baseLevel: false,
   ingredients: ['cryo pump', 'living glass'],
   '_cryo pump': 1,
@@ -359,6 +374,7 @@ export const cryogenicchamber = {
 
 export const cryopump = {
   name: 'cryopump',
+  id: 'Cryo-Pump',
   baseLevel: false,
   ingredients: ['hot ice', 'thermic condensate'],
   '_hot ice': 1,
@@ -383,6 +399,7 @@ export const cryopump = {
 
 export const geodesite = {
   name: 'geodesite',
+  id: 'Geodesite',
   baseLevel: false,
   ingredients: ['dirty bronze', 'herox', 'lemmium'],
   '_dirty bronze': 1,
@@ -416,6 +433,7 @@ export const geodesite = {
 
 export const hotice = {
   name: 'hotice',
+  id: 'Hot Ice',
   baseLevel: false,
   ingredients: ['enriched carbon', 'nitrogen salt'],
   '_enriched carbon': 1,
@@ -440,6 +458,7 @@ export const hotice = {
 
 export const iridesite = {
   name: 'iridesite',
+  id: 'Iridesite',
   baseLevel: false,
   ingredients: ['aronium', 'magnogold', 'grantine'],
   _aronium: 1,
@@ -473,6 +492,7 @@ export const iridesite = {
 
 export const livingglass = {
   name: 'livingglass',
+  id: 'Living Glass',
   baseLevel: false,
   ingredients: ['lubricant', 'glass'],
   _lubricant: 1,
@@ -497,6 +517,7 @@ export const livingglass = {
 
 export const quantumprocessor = {
   name: 'quantumprocessor',
+  id: 'Quantum Processor',
   baseLevel: false,
   ingredients: ['circuit board', 'superconductor'],
   '_circuit board': 1,
@@ -521,6 +542,7 @@ export const quantumprocessor = {
 
 export const semiconductor = {
   name: 'semiconductor',
+  id: 'Semiconductor',
   baseLevel: false,
   ingredients: ['thermic condensate', 'nitrogen salt'],
   _nitrogen: 250,
@@ -545,6 +567,7 @@ export const semiconductor = {
 
 export const stasisdevice = {
   name: 'stasisdevice',
+  id: 'Stasis Device',
   baseLevel: false,
   ingredients: ['quantum processor', 'cryogenic chamber', 'iridesite'],
   '_quantum processor': 1,
@@ -578,6 +601,7 @@ export const stasisdevice = {
 
 export const superconductor = {
   name: 'superconductor',
+  id: 'Superconductor',
   baseLevel: false,
   ingredients: ['enriched carbon', 'semiconductor'],
   '_enriched carbon': 1,

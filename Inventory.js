@@ -414,6 +414,7 @@ export class RemainingInventory extends Inventory {
     return this._relevantIngrs;
   }
 
+  //AMMONIA-------------------------------------------
   get ammonia() {
     return this._ammonia;
   }
@@ -426,6 +427,7 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //CONDENSED CARBON-------------------------------------------
   get 'condensed carbon'() {
     return this["_condensed carbon"];
   }
@@ -664,17 +666,19 @@ export class RemainingInventory extends Inventory {
     console.log(this);
   }
 
-  createResultElements(location, tradegood) {
+  createResultElements(location, tradegoodListObject, tradegood) {
     this.relevantIngrs.forEach((ingredient) => {
-      let ingrResultEl = document.createElement('h5');
-      console.log(this.relevantIngrs)
+
+      let ingrResultEl = document.createElement('h3');
 
       if (this[ingredient] >= 0) {
-        console.log(`You have enough ${ingredient} to make ${tradegood}.`);
+        ingrResultEl.innerText = `You have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}.`;
       } else {
-        console.log(`You do not have enough ${ingredient} to make ${tradegood}. You need ${this[ingredient]}`)
+        ingrResultEl.innerText = `You do not have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}. You need ${Math.abs(this[ingredient])} more.`;
       }
-      
+
+      location.appendChild(ingrResultEl)
+      location.appendChild(document.createElement("br"));
 
     });
   }

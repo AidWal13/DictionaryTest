@@ -36,11 +36,16 @@ ingrButtons.forEach((optionBtn) => {
 
 
 
+
+
 //Functions
 
 function createIngrInputs(tradegoodListObject, tradegood) {
   tradegood = tradegood.replace(/\s/g, '');
-    console.log(`Selected trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
+  console.log(`ACTUAL PROBLEM CHILD ?`);
+  console.log(tradegood);
+
+  console.log(`Selected trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
 
     if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
 
@@ -61,6 +66,8 @@ function createIngrInputs(tradegoodListObject, tradegood) {
     } 
     else 
     {
+      console.log(`PROBLEM CHILD`);
+      console.log(tradegood);
 
       tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
         createIngrInputs(tradegoodListObject, ingr);
@@ -111,7 +118,11 @@ function addSubmitButton(el) {
   let submitButton = document.createElement('input');
   submitButton.type = "submit";
   submitButton.id = "ingredientSubmit";
-  submitButton.addEventListener("click", makeIngrResults);
+  submitButton.addEventListener("click", (evt) => {
+    evt.currentTarget.parentElement.style.display ='none';
+    evt.currentTarget.parentElement.nextElementSibling.style.display ='block';
+    makeIngrResults();
+  });
   
   //let div = document.getElementById("divOfInputs");
   el.appendChild(document.createElement("br"));
@@ -138,36 +149,6 @@ function makeIngrResults() {
 
   RemainingInv.updateWhatsRemaining(UserInv, NeededInv);
 
-  RemainingInv.createResultElements(document.getElementById("divOfResults"), tradegoodChosen);
+  RemainingInv.createResultElements(document.getElementById("divOfResults"), TradeGoods, tradegoodChosen);
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//PROVERBIAL TRASH
-
-function moveOnTGSetTo(evt) {
-  evt.currentTarget.parentElement.style.display ='none';
-  evt.currentTarget.parentElement.nextElementSibling.style.display ='block';
-
-  tradegoodChosen = evt.currentTarget.id;
-  NeededInv.addGoodToInv(TradeGoods, TradeGoods[tradegoodChosen]);
-  
-  TradeGoods[tradegoodChosen].ingredients.forEach((ingr) => {
-    makeIngrInput(ingr);
-  });
-  
-  //this says, go to the parent element of the option button, which is the current target that the event listener is attached to, then go to the next sibling.  Thats how it finds the right place to add the submit button. 
-  addSubmitButton(evt.currentTarget.parentElement.nextElementSibling);
 }
