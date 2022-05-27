@@ -376,6 +376,9 @@ export class ShoppingListInventory extends Inventory {
 }
 
 
+
+
+
 export class UserInventory extends Inventory {
   constructor() {
     super()
@@ -399,12 +402,21 @@ export class UserInventory extends Inventory {
 
 
 
+
+
 export class RemainingInventory extends Inventory {
   constructor() {
     super()
     this._relevantIngrs = [];
   }
 
+  get relevantIngrs() {
+    return this._relevantIngrs;
+  }
+
+  get ammonia() {
+    return this._ammonia;
+  }
 
   set 'ammonia'(amt) {
     if (typeof amt === 'number'){
@@ -412,6 +424,10 @@ export class RemainingInventory extends Inventory {
     } else {
       console.log("failure to assign ammonia.  Check input type");
     }
+  }
+
+  get 'condensed carbon'() {
+    return this["_condensed carbon"];
   }
 
   set 'condensed carbon'(amt) {
@@ -422,12 +438,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //CACTUS FLESH-------------------------------------------
+  get 'cactus flesh'() {
+    return this["_cactus flesh"];
+  }
+
   set 'cactus flesh'(amt) {
     if (typeof amt === 'number'){
       this["_cactus flesh"] += amt;
     } else {
       console.log("failure to assign cactus flesh.  Check input type");
     }
+  }
+
+  //DIOXITE-------------------------------------------
+  get dioxite() {
+    return this._dioxite;
   }
 
   set dioxite(amt) {
@@ -438,12 +464,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //FAECIUM-------------------------------------------
+  get faecium() {
+    return this._faecium;
+  }
+
   set faecium(amt) {
     if (typeof amt === 'number'){
       this["_faecium"] += amt;
     } else {
       console.log("failure to assign faecium.  Check input type");
     }
+  }
+
+  //FROST CRYSTAL-------------------------------------------
+  get 'frost crystal'() {
+    return this['_frost crystal'];
   }
 
   set 'frost crystal'(amt) {
@@ -454,12 +490,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //GAMMA ROOT-------------------------------------------
+  get 'gamma root'() {
+    return this['_gamma root'];
+  }
+
   set 'gamma root'(amt) {
     if (typeof amt === 'number'){
       this["_gamma root"] += amt;
     } else {
       console.log("failure to assign gamma root.  Check input type");
     }
+  }
+
+  //IONISED COBALT-------------------------------------------
+  get 'ionised cobalt'() {
+    return this['_ionised cobalt'];
   }
 
   set 'ionised cobalt'(amt) {
@@ -470,12 +516,23 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //NITROGEN-------------------------------------------
+  get nitrogen() {
+    return this['_nitrogen'];
+  }
+
   set nitrogen(amt) {
     if (typeof amt === 'number'){
       this._nitrogen += amt;
     } else {
       console.log("Failure to assign nitrogen.  Check input type");
     }
+  }
+
+  
+  //PHOSPHORUS-------------------------------------------
+  get paraffinium() {
+    return this['_paraffinium'];
   }
 
   set paraffinium(amt) {
@@ -486,12 +543,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //PHOSPHORUS-------------------------------------------
+  get phosphorus() {
+    return this['_phosphorus'];
+  }
+
   set phosphorus(amt) {
     if (typeof amt === 'number'){
       this._phosphorus += amt;
     } else {
       console.log("Failure to assign phosphorus.  Check input type");
     }
+  }
+
+  //PURE FERRITE-------------------------------------------
+  get 'pure ferrite'() {
+    return this['_pure ferrite'];
   }
 
   set 'pure ferrite'(amt) {
@@ -502,12 +569,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //PYRITE-------------------------------------------
+  get pyrite() {
+    return this['_pyrite'];
+  }
+
   set pyrite(amt) {
     if (typeof amt === 'number'){
       this._pyrite += amt;
     } else {
       console.log("Failure to assign pyrite.  Check input type");
     }
+  }
+
+  //RADON-------------------------------------------
+  get radon() {
+    return this['_radon'];
   }
 
   set radon(amt) {
@@ -518,12 +595,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //SOLANIUM-------------------------------------------
+  get solanium() {
+    return this['_solanium'];
+  }
+
   set solanium(amt) {
     if (typeof amt === 'number'){
       this._solanium += amt;
     } else {
       console.log("Failure to assign solanium.  Check input type");
     }
+  }
+
+  //STAR BULB-------------------------------------------
+  get 'star bulb'() {
+    return this['_star bulb'];
   }
 
   set 'star bulb'(amt) {
@@ -534,12 +621,22 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  //SULPHURINE-------------------------------------------
+  get sulphurine() {
+    return this['_sulphurine'];
+  }
+
   set sulphurine(amt) {
     if (typeof amt === 'number'){
       this._sulphurine += amt;
     } else {
       console.log("Failure to assign sulphurine.  Check input type");
     }
+  }
+
+  //URANIUM-------------------------------------------
+  get uranium() {
+    return this['_uranium'];
   }
 
   set uranium(amt) {
@@ -550,9 +647,14 @@ export class RemainingInventory extends Inventory {
     }
   }
 
+  updateRelevantIngrs(neededinv) {
+    neededinv.relevantIngrs.forEach((ingr) => {
+      this._relevantIngrs.push(ingr);
+    })
+  }
+
   updateWhatsRemaining(userinv, neededinv) {
-    console.log(this)
-    neededinv.relevantIngrs.forEach((ingredient) => {
+    this.relevantIngrs.forEach((ingredient) => {
       console.log(`Within updateWhatsRemaining for ${ingredient}`);
       console.log(`user inventory ingredient : ${userinv[ingredient]}`)
 
@@ -560,5 +662,20 @@ export class RemainingInventory extends Inventory {
 
     });
     console.log(this);
+  }
+
+  createResultElements(location, tradegood) {
+    this.relevantIngrs.forEach((ingredient) => {
+      let ingrResultEl = document.createElement('h5');
+      console.log(this.relevantIngrs)
+
+      if (this[ingredient] >= 0) {
+        console.log(`You have enough ${ingredient} to make ${tradegood}.`);
+      } else {
+        console.log(`You do not have enough ${ingredient} to make ${tradegood}. You need ${this[ingredient]}`)
+      }
+      
+
+    });
   }
 }

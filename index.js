@@ -4,10 +4,9 @@ import * as TradeGoods from './TradeGoods.js';
 //ACTUAL CODING -------------------------------------------------------------------------
 
 let tradegoodChosen;
-const UserInv = new UserInventory();
 const NeededInv = new ShoppingListInventory();
-const RemainingInv = new RemainingInventory();
-const collectInputs = UserInv.collectInputs.bind(UserInv);
+//const UserInv = new UserInventory();
+//const collectInputs = UserInv.collectInputs.bind(UserInv);
 
 //get all buttons and add event listeners
 let ingrButtons = document.querySelectorAll(".option");
@@ -112,7 +111,6 @@ function addSubmitButton(el) {
   let submitButton = document.createElement('input');
   submitButton.type = "submit";
   submitButton.id = "ingredientSubmit";
-  //submitButton.addEventListener("click", collectInputs);
   submitButton.addEventListener("click", makeIngrResults);
   
   //let div = document.getElementById("divOfInputs");
@@ -126,10 +124,21 @@ function makeIngrResults() {
   //input the difference into remainingInv
   //create elements based on Relevantingrs
   //state whether more is needed or if the user has enough
+  const UserInv = new UserInventory();
+  const collectInputs = UserInv.collectInputs.bind(UserInv);
+  
   collectInputs();
+
+  const RemainingInv = new RemainingInventory();
+
+  RemainingInv.updateRelevantIngrs(NeededInv);
+
+  console.log(`after updated relevant ingrs of remaining inv`)
+  console.log(RemainingInv);
 
   RemainingInv.updateWhatsRemaining(UserInv, NeededInv);
 
+  RemainingInv.createResultElements(document.getElementById("divOfResults"), tradegoodChosen);
 
 }
 
