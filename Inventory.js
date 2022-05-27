@@ -674,7 +674,7 @@ export class RemainingInventory extends Inventory {
       if (this[ingredient] >= 0) {
         ingrResultEl.innerText = `You have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}.`;
       } else {
-        ingrResultEl.innerText = `You do not have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}. You need ${Math.abs(this[ingredient])} more.`;
+        ingrResultEl.innerHTML = `You do not have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}. You need ${Math.abs(this[ingredient])} more. <a target="_blank" href="https://nomanssky.fandom.com/wiki/${tradegoodListObject[tradegood].id}#Source">Sources of ${ingredient}</a>`;
       }
 
       location.appendChild(ingrResultEl)
