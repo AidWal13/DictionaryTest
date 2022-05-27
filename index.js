@@ -19,14 +19,13 @@ ingrButtons.forEach((optionBtn) => {
     
       tradegoodChosen = evt.currentTarget.id;
 
+      //This updates the list that will later be used to make sure only relevant ingredients are compared, and not all ingredients. 
+      NeededInv.updateRelevantIngrs(TradeGoods, tradegoodChosen)
+
       //This updates the needed inventory with, as you might expect, what's needed
       NeededInv.addGoodToInv(TradeGoods, tradegoodChosen);
       
       createIngrInputs(TradeGoods, tradegoodChosen)
-      //This creates all the inputs in the html file
-      /*TradeGoods[tradegoodChosen].ingredients.forEach((ingr) => {
-        makeIngrInput(ingr);
-      });*/
 
       //this says, go to the parent element of the option button, which is the current target that the event listener is attached to, then go to the next sibling.  Thats how it finds the right place to add the submit button. 
       addSubmitButton(evt.currentTarget.parentElement.nextElementSibling);
@@ -113,7 +112,7 @@ function addSubmitButton(el) {
   let submitButton = document.createElement('input');
   submitButton.type = "submit";
   submitButton.id = "ingredientSubmit";
-  submitButton.addEventListener("click", collectInputs);
+  //submitButton.addEventListener("click", collectInputs);
   submitButton.addEventListener("click", makeIngrResults);
   
   //let div = document.getElementById("divOfInputs");
@@ -123,8 +122,15 @@ function addSubmitButton(el) {
 
 function makeIngrResults() {
   //This function needs to:
-  //
-  RemainingInv.sayHowMuchIsRemaining(UserInv, NeededInv);
+  //compare the needed and user inv
+  //input the difference into remainingInv
+  //create elements based on Relevantingrs
+  //state whether more is needed or if the user has enough
+  collectInputs();
+
+  RemainingInv.updateWhatsRemaining(UserInv, NeededInv);
+
+
 }
 
 

@@ -310,23 +310,40 @@ export class Inventory {
       console.log("Failure to assign uranium.  Check input type");
     }
   }
-  
-  //STATIC ELEMENTS
-  
-  static haveEnoughOf(ingredient, ingredientInventory, userInventory) {
-    let val = userInventory[ingredient] - ingredientInventory[ingredient];
-    if (val >= 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
 
 
 export class ShoppingListInventory extends Inventory { 
   constructor() {
-    super()
+    super();
+    this._relevantIngrs = [];
+  }
+
+  get relevantIngrs() {
+    return this._relevantIngrs;
+  }
+
+  updateRelevantIngrs(tradegoodListObject, tradegood) {
+
+    tradegood = tradegood.replace(/\s/g, '');
+
+    if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) { 
+      
+      let ingrList = tradegoodListObject[tradegood].ingredients;
+      ingrList.forEach((ingr) => {
+        if (!this.relevantIngrs.includes(ingr)) {
+          this.relevantIngrs.push(ingr);
+        }
+      });
+
+    } else {
+
+      tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+        this.updateRelevantIngrs(tradegoodListObject, ingr);
+      });
+
+    }
+
   }
   
   addGoodToInv(tradegoodListObject, tradegood) {
@@ -337,15 +354,13 @@ export class ShoppingListInventory extends Inventory {
     if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
 
       tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
-        
-        console.log(`this[ingr] or ${ingr} is ${this[ingr]}`);
+        //console.log(`this[ingr] or ${ingr} is ${this[ingr]}`);
 
         //ACTUAL ASSIGNMENT OCCURS HERE
         //Because of how the setters work, this HAS to be =, not +=, to work properly
         this[ingr] = tradegoodListObject[tradegood][ingr];
 
-        console.log(`this[ingr] or ${ingr} following assignment is ${this[ingr]}`);
-
+        //console.log(`this[ingr] or ${ingr} following assignment is ${this[ingr]}`);
       });
 
       return;
@@ -366,15 +381,6 @@ export class UserInventory extends Inventory {
     super()
   }
   
-  haveEnoughOf(ingr) {
-    let dif = this[ingr] - NeededInv[ingr];
-    if (dif < 0) {
-      return false;
-    } else if (dif >= 0) {
-      return true;
-    }
-  }
-  
   collectInputs() {
     let relevantInputs = document.querySelectorAll("#divOfInputs .ingrInput");
 
@@ -391,13 +397,168 @@ export class UserInventory extends Inventory {
   }
 }
 
+
+
 export class RemainingInventory extends Inventory {
   constructor() {
     super()
     this._relevantIngrs = [];
   }
 
-  sayHowMuchIsRemaining(userinv, neededinv) {
-    console.log(`We are all the way inside` + this);
+
+  set 'ammonia'(amt) {
+    if (typeof amt === 'number'){
+      this["_ammonia"] += amt;
+    } else {
+      console.log("failure to assign ammonia.  Check input type");
+    }
+  }
+
+  set 'condensed carbon'(amt) {
+    if (typeof amt === 'number'){
+      this["_condensed carbon"] += amt;
+    } else {
+      console.log("failure to assign condensed carbon.  Check input type");
+    }
+  }
+
+  set 'cactus flesh'(amt) {
+    if (typeof amt === 'number'){
+      this["_cactus flesh"] += amt;
+    } else {
+      console.log("failure to assign cactus flesh.  Check input type");
+    }
+  }
+
+  set dioxite(amt) {
+    if (typeof amt === 'number'){
+      this["_dioxite"] += amt;
+    } else {
+      console.log("failure to assign dioxite.  Check input type");
+    }
+  }
+
+  set faecium(amt) {
+    if (typeof amt === 'number'){
+      this["_faecium"] += amt;
+    } else {
+      console.log("failure to assign faecium.  Check input type");
+    }
+  }
+
+  set 'frost crystal'(amt) {
+    if (typeof amt === 'number'){
+      this["_frost crystal"] += amt;
+    } else {
+      console.log("failure to assign frost crystal.  Check input type");
+    }
+  }
+
+  set 'gamma root'(amt) {
+    if (typeof amt === 'number'){
+      this["_gamma root"] += amt;
+    } else {
+      console.log("failure to assign gamma root.  Check input type");
+    }
+  }
+
+  set 'ionised cobalt'(amt) {
+    if (typeof amt === 'number'){
+      this["_ionised cobalt"] += amt;
+    } else {
+      console.log("failure to assign ionised cobalt.  Check input type");
+    }
+  }
+
+  set nitrogen(amt) {
+    if (typeof amt === 'number'){
+      this._nitrogen += amt;
+    } else {
+      console.log("Failure to assign nitrogen.  Check input type");
+    }
+  }
+
+  set paraffinium(amt) {
+    if (typeof amt === 'number'){
+      this._paraffinium += amt;
+    } else {
+      console.log("Failure to assign paraffinium.  Check input type");
+    }
+  }
+
+  set phosphorus(amt) {
+    if (typeof amt === 'number'){
+      this._phosphorus += amt;
+    } else {
+      console.log("Failure to assign phosphorus.  Check input type");
+    }
+  }
+
+  set 'pure ferrite'(amt) {
+    if (typeof amt === 'number'){
+      this["_pure ferrite"] += amt;
+    } else {
+      console.log("failure to assign pure ferrite.  Check input type");
+    }
+  }
+
+  set pyrite(amt) {
+    if (typeof amt === 'number'){
+      this._pyrite += amt;
+    } else {
+      console.log("Failure to assign pyrite.  Check input type");
+    }
+  }
+
+  set radon(amt) {
+    if (typeof amt === 'number'){
+      this._radon += amt;
+    } else {
+      console.log("Failure to assign radon.  Check input type");
+    }
+  }
+
+  set solanium(amt) {
+    if (typeof amt === 'number'){
+      this._solanium += amt;
+    } else {
+      console.log("Failure to assign solanium.  Check input type");
+    }
+  }
+
+  set 'star bulb'(amt) {
+    if (typeof amt === 'number'){
+      this["_star bulb"] += amt;
+    } else {
+      console.log("failure to assign star bulb.  Check input type");
+    }
+  }
+
+  set sulphurine(amt) {
+    if (typeof amt === 'number'){
+      this._sulphurine += amt;
+    } else {
+      console.log("Failure to assign sulphurine.  Check input type");
+    }
+  }
+
+  set uranium(amt) {
+    if (typeof amt === 'number'){
+      this._uranium += amt;
+    } else {
+      console.log("Failure to assign uranium.  Check input type");
+    }
+  }
+
+  updateWhatsRemaining(userinv, neededinv) {
+    console.log(this)
+    neededinv.relevantIngrs.forEach((ingredient) => {
+      console.log(`Within updateWhatsRemaining for ${ingredient}`);
+      console.log(`user inventory ingredient : ${userinv[ingredient]}`)
+
+      this[ingredient] = userinv[ingredient] - neededinv[ingredient];
+
+    });
+    console.log(this);
   }
 }
