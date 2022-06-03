@@ -5,8 +5,6 @@ import * as TradeGoods from './TradeGoods.js';
 
 let tradegoodChosen;
 const NeededInv = new ShoppingListInventory();
-//const UserInv = new UserInventory();
-//const collectInputs = UserInv.collectInputs.bind(UserInv);
 
 //get all buttons and add event listeners
 let ingrButtons = document.querySelectorAll(".option");
@@ -93,6 +91,10 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
 
   } else {
 
+    //Create the Div to contain input and label
+    let newDiv = document.createElement('div');
+    newDiv.classList.add('ingrInputDiv');
+
     //Create the label element
     let labelEl = document.createElement('label');
     labelEl.innerHTML = ingredient;
@@ -104,13 +106,17 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
     inputEl.type = "number";
     inputEl.name = ingredient;
     inputEl.classList.add('ingrInput');
-      
     inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
     
+    //Add input and label to div
+    newDiv.appendChild(labelEl);
+    newDiv.appendChild(document.createElement("br"));
+    newDiv.appendChild(inputEl);
+    newDiv.appendChild(document.createElement("br"));
+
+    //Append them to the page
     let div = document.getElementById("divOfInputs");
-    div.appendChild(labelEl);
-    div.appendChild(inputEl);
-    div.appendChild(document.createElement("br"));
+    div.appendChild(newDiv);
   }
 }
 
