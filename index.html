@@ -7,11 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No Man's Sky: Ingredient Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="Assets/Images/favicon.png">
+    <link rel="stylesheet" href="https://use.typekit.net/dfz0vsk.css">
+
+    <script defer src="./index.js" type="module"></script>
+    <script defer src="./Inventory.js" type="module"></script>
+    <script defer src="./TradeGoods.js" type="module"></script>
 </head>
 
 <body>
+    <h1>Trade Good Calculator</h1>
+    <div id="helpSection">
+        <h4>First, select what trade good you would like to create, then enter the amount of each necessary ingredient you have.  The calculator will then tell you whether you have enough, or what components you're lacking.</h4>
+        <h4> The trade goods are divided up by whether or not they are a base level good - meaning, whether or not they need other trade goods to construct.  For example: Aronium is base level because it requires components derived from the environment, but a Circuit Board is not base level because it requires a heat capacitor and poly fibre, both of which must be built.  </h4>
+    </div>
+
     <div id="divOfOptions">
         <h2>Choose Trade Good</h2>
+
 
         <button class='option' id="aronium" value="aronium">Aronium</button>
 
@@ -75,11 +88,10 @@
     <div id="divOfResults" style="display: none;">
         <h2>Outcome</h2>
     </div>
-    
 
-    <script src="./index.js" type="module"></script>
-    <script src="./Inventory.js" type="module"></script>
-    <script src="./TradeGoods.js" type="module"></script>
+    <button id="helpButton">HELP</button>
+
+    
 </body>
 
 </html>
