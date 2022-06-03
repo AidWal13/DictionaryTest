@@ -29,6 +29,8 @@ ingrButtons.forEach((optionBtn) => {
     });
 });
 
+document.getElementById("helpButton").addEventListener('click', helpButtonActivate);
+
 
 
 
@@ -87,6 +89,7 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
 
     currentPlaceholder = currentPlaceholder + tradegoodListObject[tradegood][ingredient];
     alreadyCreatedEl.placeholder = currentPlaceholder;
+
     return;
 
   } else {
@@ -157,4 +160,8 @@ function makeIngrResults() {
 
   RemainingInv.createResultElements(document.getElementById("divOfResults"), TradeGoods, tradegoodChosen);
 
+}
+
+function helpButtonActivate() {
+  document.getElementById("helpSection").style.display = "block";
 }
