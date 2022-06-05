@@ -10,10 +10,6 @@ body {color: black;}
     right: 2%;
 }
 
-#helpSection {
-    display: none;
-}
-
 h1 {
     font-family: elevon, sans-serif;
     font-size: 4rem;

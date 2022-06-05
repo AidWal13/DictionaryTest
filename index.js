@@ -163,5 +163,11 @@ function makeIngrResults() {
 }
 
 function helpButtonActivate() {
-  document.getElementById("helpSection").style.display = "block";
+  let relEl = document.getElementById("helpSection");
+
+  if (relEl.style.display == "none") {
+    relEl.style.display = 'block';
+  } else if (relEl.style.display == "block") {
+    relEl.style.display = "none";
+  }
 }
