@@ -17,64 +17,146 @@
 
 <body>
     <h1>Trade Good Calculator</h1>
+
+    <div id="topRightSec">
+        <button class="metabtn" id="helpButton">HELP</button>
+        <button class="metabtn" id="resetButton" onclick="window.location.reload()">RESET</button>
+    </div>
+
     <div id="helpSection" style="display:none;">
         <h4>First, select what trade good you would like to create, then enter the amount of each necessary ingredient you have.  The calculator will then tell you whether you have enough, or what components you're lacking.</h4>
         <h4> The trade goods are divided up by whether or not they are a base level good - meaning, whether or not they need other trade goods to construct.  For example: Aronium is base level because it requires components derived from the environment, but a Circuit Board is not base level because it requires a heat capacitor and poly fibre, both of which must be built.  </h4>
     </div>
 
     <div id="divOfOptions">
+
         <h2>Choose Trade Good</h2>
 
+        <div id="ingrArticleOptions">
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/aronium.webp" alt="Aronium No Man's Sky">
+                <button class='option' id="aronium" value="aronium">Aronium</button>
+            </article>
 
-        <button class='option' id="aronium" value="aronium">Aronium</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/dirtybronze.webp" alt="Dirty Bronze No Man's Sky">
+                <button class='option' id="dirtybronze" value="dirtybronze">Dirty Bronze</button>
+            </article>
 
-        <button class='option' id="dirtybronze" value="dirtybronze">Dirty Bronze</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/enrichedcarbon.webp" alt="Enriched Carbon No Man's Sky">
+                <button class='option' id="enrichedcarbon" value="enrichedcarbon">Enriched Carbon</button>
+            </article>
 
-        <button class='option' id="enrichedcarbon" value="enrichedcarbon">Enriched Carbon</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/glass.webp" alt="Glass No Man's Sky">
+                <button class='option' id="glass" value="glass">Glass</button>
+            </article>
 
-        <button class='option' id="glass" value="glass">Glass</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/grantine.webp" alt="Grantine No Man's Sky">
+                <button class='option' id="grantine" value="grantine">Grantine</button>
+            </article>
 
-        <button class='option' id="grantine" value="grantine">Grantine</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/heatcapacitor.webp" alt="Heat Capacitor No Man's Sky">
+                <button class='option' id="heatcapacitor" value="heatcapacitor">Heat Capacitor</button>
+            </article>
 
-        <button class='option' id="heatcapacitor" value="heatcapacitor">Heat Capacitor</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/herox.webp" alt="Herox No Man's Sky">
+                <button class='option' id="herox" value="herox">Herox</button>
+            </article>
 
-        <button class='option' id="herox" value="herox">Herox</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/lemmium.webp" alt="Lemmium No Man's Sky">
+                <button class='option' id="lemmium" value="lemmium">Lemmium</button>
+            </article>
 
-        <button class='option' id="lemmium" value="lemmium">Lemmium</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/lubricant.webp" alt="Lubricant No Man's Sky">
+                <button class='option' id="lubricant" value="lubricant">Lubricant</button>
+            </article>
 
-        <button class='option' id="lubricant" value="lubricant">Lubricant</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/magnogold.webp" alt="Magno-Gold No Man's Sky">
+                <button class='option' id="magnogold" value="magnogold">Magno-Gold</button>
+            </article>
 
-        <button class='option' id="magnogold" value="magnogold">Magno-Gold</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/nitrogensalt.webp" alt="Nitrogen Salt No Man's Sky">
+                <button class='option' id="nitrogensalt" value="nitrogensalt">Nitrogen Salt</button>
+            </article>
 
-        <button class='option' id="nitrogensalt" value="nitrogensalt">Nitrogen Salt</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/polyfibre.webp" alt="Poly Fibre No Man's Sky">
+                <button class='option' id="polyfibre" value="polyfibre">Poly Fibre</button>
+            </article>
 
-        <button class='option' id="polyfibre" value="polyfibre">Poly Fibre</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/thermiccondensate.webp" alt="Thermic Condensate No Man's Sky">
+                <button class='option' id="thermiccondensate" value="thermiccondensate">Thermic Condensate</button>
+            </article>
+        </div>
+        
+            <br><br>
 
-        <button class='option' id="thermiccondensate" value="thermiccondensate">Thermic Condensate</button>
+        <div id="ingrArticleOptions"></div>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/circuitboard.webp" alt="Circuit Board No Man's Sky">
+                <button class='option' id="circuitboard" value="circuitboard">Circuit Board</button>
+            </article>
 
-        <br><br>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/cryogenicchamber.webp" alt="Cryogenic Chamber No Man's Sky">
+                <button class='option' id="cryogenicchamber" value="cryogenicchamber">Cryogenic Chamber</button>
+            </article>
 
-        <button class='option' id="circuitboard" value="circuitboard">Circuit Board</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/cryopump.webp" alt="Cryo Pump No Man's Sky">
+                <button class='option' id="cryopump" value="cryopump">Cryo Pump</button>
+            </article>
 
-        <button class='option' id="cryogenicchamber" value="cryogenicchamber">Cryogenic Chamber</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/geodesite.webp" alt="Geodesite No Man's Sky">
+                <button class='option' id="geodesite" value="geodesite">Geodesite</button>
+            </article>
 
-        <button class='option' id="cryopump" value="cryopump">Cryo Pump</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/hotice.webp" alt="Hot Ice No Man's Sky">
+                <button class='option' id="hotice" value="hotice">Hot Ice</button>
+            </article>
 
-        <button class='option' id="geodesite" value="geodesite">Geodesite</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/iridesite.webp" alt="Iridesite No Man's Sky">
+                <button class='option' id="iridesite" value="iridesite">Iridesite</button>
+            </article>
 
-        <button class='option' id="hotice" value="hotice">Hot Ice</button>
-
-        <button class='option' id="iridesite" value="iridesite">Iridesite</button>
-
-        <button class='option' id="livingglass" value="livingglass">Living Glass</button>
-
-        <button class='option' id="quantumprocessor" value="quantumprocessor">Quantum Processor</button>
-
-        <button class='option' id="semiconductor" value="semiconductor">Semiconductor</button>
-
-        <button class='option' id="stasisdevice" value="stasisdevice">Stasis Device</button>
-
-        <button class='option' id="superconductor" value="superconductor">Superconductor</button>
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/livingglass.webp" alt="Living Glass No Man's Sky">
+                <button class='option' id="livingglass" value="livingglass">Living Glass</button>
+            </article>
+            
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/quantumprocessor.webp" alt="Quantum Processor No Man's Sky">
+                <button class='option' id="quantumprocessor" value="quantumprocessor">Quantum Processor</button>
+            </article>
+            
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/semiconductor.webp" alt="Semiconductor No Man's Sky">
+                <button class='option' id="semiconductor" value="semiconductor">Semiconductor</button>
+            </article>
+            
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/stasisdevice.webp" alt="Stasis Device No Man's Sky">
+                <button class='option' id="stasisdevice" value="stasisdevice">Stasis Device</button>
+            </article>
+            
+            <article class="ingrArticle">
+                <img class="tradegoodImg" src="./Assets/Images/Ingredients/superconductor.webp" alt="Superconductor No Man's Sky">
+                <button class='option' id="superconductor" value="superconductor">Superconductor</button>
+            </article>
+        </div>
 
     </div>
     
@@ -89,10 +171,7 @@
         <h2>Outcome</h2>
     </div>
 
-    <div id="topRightSec">
-        <button id="helpButton">HELP</button>
-        <button id="resetButton" onclick="window.location.reload()">RESET</button>
-    </div>
+    
     
 </body>
 

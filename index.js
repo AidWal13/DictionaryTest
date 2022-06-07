@@ -11,8 +11,9 @@ let ingrButtons = document.querySelectorAll(".option");
 
 ingrButtons.forEach((optionBtn) => {
     optionBtn.addEventListener('click', (evt) => {
-      evt.currentTarget.parentElement.style.display ='none';
-      evt.currentTarget.parentElement.nextElementSibling.style.display ='block';
+      let currentSection = evt.currentTarget.parentElement.parentElement.parentElement;
+      currentSection.style.display ='none';
+      currentSection.nextElementSibling.style.display ='block';
     
       tradegoodChosen = evt.currentTarget.id;
 
@@ -25,7 +26,7 @@ ingrButtons.forEach((optionBtn) => {
       createIngrInputs(TradeGoods, tradegoodChosen)
 
       //this says, go to the parent element of the option button, which is the current target that the event listener is attached to, then go to the next sibling.  Thats how it finds the right place to add the submit button. 
-      addSubmitButton(evt.currentTarget.parentElement.nextElementSibling);
+      addSubmitButton(currentSection.nextElementSibling);
     });
 });
 
