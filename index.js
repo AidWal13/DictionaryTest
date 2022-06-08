@@ -43,8 +43,6 @@ document.getElementById("helpButton").addEventListener('click', helpButtonActiva
 
 function createIngrInputs(tradegoodListObject, tradegood) {
   tradegood = tradegood.replace(/\s/g, '');
-  console.log(`ACTUAL PROBLEM CHILD ?`);
-  console.log(tradegood);
 
   console.log(`Selected trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
 
@@ -67,8 +65,6 @@ function createIngrInputs(tradegoodListObject, tradegood) {
     } 
     else 
     {
-      console.log(`PROBLEM CHILD`);
-      console.log(tradegood);
 
       tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
         createIngrInputs(tradegoodListObject, ingr);
@@ -99,6 +95,11 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
     let newDiv = document.createElement('div');
     newDiv.classList.add('ingrInputDiv');
 
+    //Get the image
+    let imgEl = document.createElement('img');
+    imgEl.src = `./assets/images/ingredients/${ingredient.replace(/\s/g, '')}.webp`;
+    imgEl.classList.add('ingrPic');
+
     //Create the label element
     let labelEl = document.createElement('label');
     labelEl.innerHTML = ingredient;
@@ -112,7 +113,8 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
     inputEl.classList.add('ingrInput');
     inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
     
-    //Add input and label to div
+    //Add img input and label to div
+    newDiv.appendChild(imgEl);
     newDiv.appendChild(labelEl);
     newDiv.appendChild(document.createElement("br"));
     newDiv.appendChild(inputEl);
