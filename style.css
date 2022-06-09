@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body {color: black;}
+body {color: white; background-color: black;}
 
 #topRightSec {
     height: auto;
@@ -53,9 +53,19 @@ h3 {
 
 .tradegoodImg {
     max-height: 100px;
+    width:fit-content;
     display: block;
+    margin: 0 auto;
+    border: 3px white solid;
+    border-radius: 6px;
 }
 
 .ingrInputDiv {
     padding: 1rem;
+    align-items: center;
+    display: flex;
+}
+
+.ingrPic {
+    max-width: 100px;
 }

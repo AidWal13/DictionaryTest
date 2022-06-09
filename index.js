@@ -17,6 +17,8 @@ ingrButtons.forEach((optionBtn) => {
     
       tradegoodChosen = evt.currentTarget.id;
 
+      updateCurrentlyMaking(TradeGoods, tradegoodChosen);
+
       //This updates the list that will later be used to make sure only relevant ingredients are compared, and not all ingredients. 
       NeededInv.updateRelevantIngrs(TradeGoods, tradegoodChosen)
 
@@ -30,6 +32,12 @@ ingrButtons.forEach((optionBtn) => {
     });
 });
 
+let addBtn = document.getElementById('plus');
+addBtn.addEventListener('click', addBtnCallBack);
+
+let minusBtn = document.getElementById('minus');
+minusBtn.addEventListener('click', minusBtnCallBack);
+
 document.getElementById("helpButton").addEventListener('click', helpButtonActivate);
 
 
@@ -40,6 +48,29 @@ document.getElementById("helpButton").addEventListener('click', helpButtonActiva
 
 
 //Functions
+function addBtnCallBack() {
+  let numberEl = document.getElementById("amtTradeGood");
+  let actualNumber = parseInt(numberEl.innerText);
+  actualNumber++;
+  numberEl.innerText = actualNumber;
+}
+
+function minusBtnCallBack() {
+  let numberEl = document.getElementById("amtTradeGood");
+  let actualNumber = parseInt(numberEl.innerText);
+  actualNumber--;
+  if(actualNumber < 0) {
+    actualNumber = 0;
+  }
+  numberEl.innerText = actualNumber;
+}
+
+function updateCurrentlyMaking(tradegoodListObject, tradegood) {
+  let amtEl = document.getElementById("amtTradeGood");
+  amtEl.innerHTML = "1";
+  let nameEl = document.getElementById("tradeGoodNameInputDiv");
+  nameEl.innerHTML = `${tradegoodListObject[tradegood].id}`;
+}
 
 function createIngrInputs(tradegoodListObject, tradegood) {
   tradegood = tradegood.replace(/\s/g, '');
@@ -112,13 +143,18 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
     inputEl.name = ingredient;
     inputEl.classList.add('ingrInput');
     inputEl.placeholder = tradegoodListObject[tradegood][ingredient];
-    
+
+    //Create the div to go on the right with the input and label
+    let rightDivEl = document.createElement('div');
+    rightDivEl.id = `${ingredient.replace(/\s/g, '')}RightDiv`;
+    rightDivEl.classList.add('ingrInputRightDiv');
+
     //Add img input and label to div
     newDiv.appendChild(imgEl);
-    newDiv.appendChild(labelEl);
-    newDiv.appendChild(document.createElement("br"));
-    newDiv.appendChild(inputEl);
-    newDiv.appendChild(document.createElement("br"));
+    rightDivEl.appendChild(labelEl);
+    rightDivEl.appendChild(document.createElement("br"));
+    rightDivEl.appendChild(inputEl);
+    newDiv.appendChild(rightDivEl);
 
     //Append them to the page
     let div = document.getElementById("divOfInputs");
