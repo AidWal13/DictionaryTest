@@ -17,6 +17,7 @@ ingrButtons.forEach((optionBtn) => {
     
       tradegoodChosen = evt.currentTarget.id;
 
+      //This updates the statement that reads out what you're making and gives you the option to decide how many
       updateCurrentlyMaking(TradeGoods, tradegoodChosen);
 
       //This updates the list that will later be used to make sure only relevant ingredients are compared, and not all ingredients. 
@@ -32,11 +33,17 @@ ingrButtons.forEach((optionBtn) => {
     });
 });
 
-let addBtn = document.getElementById('plus');
-addBtn.addEventListener('click', addBtnCallBack);
+let plusBtn = document.getElementById('plus');
+plusBtn.addEventListener('click', (evt) => {
+  addBtnCallBack(TradeGoods, tradegoodChosen);
+});
+
 
 let minusBtn = document.getElementById('minus');
-minusBtn.addEventListener('click', minusBtnCallBack);
+minusBtn.addEventListener('click', () => {
+  minusBtnCallBack(TradeGoods, tradegoodChosen);
+} );
+
 
 document.getElementById("helpButton").addEventListener('click', helpButtonActivate);
 
@@ -48,14 +55,45 @@ document.getElementById("helpButton").addEventListener('click', helpButtonActiva
 
 
 //Functions
-function addBtnCallBack() {
+function addBtnCallBack(evt) {
+  addToBuildQty();
+  addAnotherIngr(evt);
+}
+
+
+function minusBtnCallBack(evt) {
+  minusFromBuildQty();
+  minusAnIngr(evt);
+}
+
+
+function addToBuildQty() {
   let numberEl = document.getElementById("amtTradeGood");
   let actualNumber = parseInt(numberEl.innerText);
   actualNumber++;
   numberEl.innerText = actualNumber;
 }
 
-function minusBtnCallBack() {
+
+function addAnotherIngr(evt) {
+  let theTGObject = TradeGoods[tradegoodChosen];
+  
+  //update the placeholders
+  theTGObject.ingredients.forEach((ingr) => {
+    let el = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
+    let placeholderNumber = parseInt(el.placeholder);
+    placeholderNumber += TradeGoods[tradegoodChosen][ingr];
+    el.placeholder = placeholderNumber;
+  })
+}
+
+
+function minusAnIngr() {
+
+}
+
+
+function minusFromBuildQty() {
   let numberEl = document.getElementById("amtTradeGood");
   let actualNumber = parseInt(numberEl.innerText);
   actualNumber--;
@@ -65,12 +103,14 @@ function minusBtnCallBack() {
   numberEl.innerText = actualNumber;
 }
 
+
 function updateCurrentlyMaking(tradegoodListObject, tradegood) {
   let amtEl = document.getElementById("amtTradeGood");
   amtEl.innerHTML = "1";
   let nameEl = document.getElementById("tradeGoodNameInputDiv");
   nameEl.innerHTML = `${tradegoodListObject[tradegood].id}`;
 }
+
 
 function createIngrInputs(tradegoodListObject, tradegood) {
   tradegood = tradegood.replace(/\s/g, '');
@@ -103,6 +143,7 @@ function createIngrInputs(tradegoodListObject, tradegood) {
 
     }
 }
+
 
 function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
   console.log(`Within Making the Input function: ${tradegoodListObject[tradegood].name}, ${ingredient.replace(/\s/g, '')}`);
@@ -162,6 +203,7 @@ function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
   }
 }
 
+
 function addSubmitButton(el) {
   let submitButton = document.createElement('input');
   submitButton.type = "submit";
@@ -176,6 +218,7 @@ function addSubmitButton(el) {
   el.appendChild(document.createElement("br"));
   el.appendChild(submitButton);
 }
+
 
 function makeIngrResults() {
   //This function needs to:
@@ -200,6 +243,7 @@ function makeIngrResults() {
   RemainingInv.createResultElements(document.getElementById("divOfResults"), TradeGoods, tradegoodChosen);
 
 }
+
 
 function helpButtonActivate() {
   let relEl = document.getElementById("helpSection");
