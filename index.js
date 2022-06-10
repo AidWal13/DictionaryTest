@@ -56,26 +56,18 @@ document.getElementById("helpButton").addEventListener('click', helpButtonActiva
 
 //Functions
 function addBtnCallBack(evt) {
-  addToBuildQty();
-  addAnotherIngr(evt);
+  addToTradeGoodCount();
+  addToIngrCount(evt);
 }
 
-
-function minusBtnCallBack(evt) {
-  minusFromBuildQty();
-  minusAnIngr(evt);
-}
-
-
-function addToBuildQty() {
+function addToTradeGoodCount() { //Changes the count
   let numberEl = document.getElementById("amtTradeGood");
   let actualNumber = parseInt(numberEl.innerText);
   actualNumber++;
   numberEl.innerText = actualNumber;
 }
 
-
-function addAnotherIngr(evt) {
+function addToIngrCount(evt) { //add to placeholder
   let theTGObject = TradeGoods[tradegoodChosen];
   
   //update the placeholders
@@ -88,19 +80,34 @@ function addAnotherIngr(evt) {
 }
 
 
-function minusAnIngr() {
-
+function minusBtnCallBack(evt) {
+  minusFromTradeGoodCount();
+  minusFromIngrCount(evt);
 }
 
-
-function minusFromBuildQty() {
+function minusFromTradeGoodCount() {
   let numberEl = document.getElementById("amtTradeGood");
   let actualNumber = parseInt(numberEl.innerText);
   actualNumber--;
-  if(actualNumber < 0) {
-    actualNumber = 0;
+  if(actualNumber < 1) {
+    actualNumber = 1;
   }
   numberEl.innerText = actualNumber;
+}
+
+function minusFromIngrCount(evt) {
+  let theTGObject = TradeGoods[tradegoodChosen];
+  
+  //update the placeholders
+  theTGObject.ingredients.forEach((ingr) => {
+    let el = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
+    let placeholderNumber = parseInt(el.placeholder);
+    placeholderNumber -= TradeGoods[tradegoodChosen][ingr];
+    if (placeholderNumber < TradeGoods[tradegoodChosen][ingr]) {
+      placeholderNumber = TradeGoods[tradegoodChosen][ingr];
+    }
+    el.placeholder = placeholderNumber;
+  })
 }
 
 
