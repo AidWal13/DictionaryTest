@@ -667,9 +667,9 @@ export class RemainingInventory extends Inventory {
       let ingrResultEl = document.createElement('h3');
 
       if (this[ingredient] >= 0) {
-        ingrResultEl.innerText = `You have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}.`;
+        ingrResultEl.innerText = `You have enough ${ingredient}.`;
       } else {
-        ingrResultEl.innerHTML = `You do not have enough ${ingredient} to make ${tradegoodListObject[tradegood].id}. You need ${Math.abs(this[ingredient])} more. <a target="_blank" href="https://nomanssky.fandom.com/wiki/${tradegoodListObject[tradegood].id}#Source">Sources of ${ingredient}</a>`;
+        ingrResultEl.innerHTML = `You do not have enough ${ingredient}. You need ${Math.abs(this[ingredient])} more. <a target="_blank" href="https://nomanssky.fandom.com/wiki/${tradegoodListObject[tradegood].id}#Source">Sources of ${ingredient}</a>`;
       }
 
       location.appendChild(ingrResultEl)

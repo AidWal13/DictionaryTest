@@ -24,7 +24,7 @@
     </div>
 
     <div id="helpSection" style="display:none;">
-        <h4>First, select what trade good you would like to create, then enter the amount of each necessary ingredient you have.  The calculator will then tell you whether you have enough, or what components you're lacking.</h4>
+        <h4>First, select what trade good you would like to create, then enter the amount of each necessary ingredient you have.  You can click the plus or minus buttons if you would like to create more than one of your selected Trade Good.  The calculator will then tell you whether you have enough, or what components you're lacking.</h4>
         <h4> The trade goods are divided up by whether or not they are a base level good - meaning, whether or not they need other trade goods to construct.  For example: Aronium is base level because it requires components derived from the environment, but a Circuit Board is not base level because it requires a heat capacitor and poly fibre, both of which must be built.  </h4>
     </div>
 
@@ -163,14 +163,14 @@
 
     <div id="divOfInputs" style="display: none;">
         <h2>Enter what you have and press submit</h2>
-        <h3>You are currently making <span id="amtTradeGood"></span> <span id="tradeGoodNameInputDiv"></span>.</h3> 
+        <h3>You are currently making <span class="amtTradeGood"></span> <span class="tradeGoodNameInputDiv"></span>.</h3> 
         Would you like to make more?<button id="minus">-</button><button id="plus">+</button>
       
     </div>
 
     
     <div id="divOfResults" style="display: none;">
-        <h2>Outcome</h2>
+        <h2>Outcome: Making <span class="amtTradeGood"></span> <span class="tradeGoodNameInputDiv"></span></h2>
     </div>
 
     

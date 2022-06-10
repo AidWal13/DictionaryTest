@@ -18,7 +18,7 @@ ingrButtons.forEach((optionBtn) => {
       tradegoodChosen = evt.currentTarget.id;
 
       //This updates the statement that reads out what you're making and gives you the option to decide how many
-      updateCurrentlyMaking(TradeGoods, tradegoodChosen);
+      updateCurrentlyMakingStatement(TradeGoods, tradegoodChosen);
 
       //This updates the list that will later be used to make sure only relevant ingredients are compared, and not all ingredients. 
       NeededInv.updateRelevantIngrs(TradeGoods, tradegoodChosen)
@@ -62,10 +62,14 @@ function addBtnCallBack(evt) {
 }
 
 function addToTradeGoodCount() { //Changes the count
-  let numberEl = document.getElementById("amtTradeGood");
-  let actualNumber = parseInt(numberEl.innerText);
+  let numberEls = document.getElementsByClassName("amtTradeGood");
+  let actualNumber = parseInt(numberEls[0].innerText);
   actualNumber++;
-  numberEl.innerText = actualNumber;
+  
+  //need to use array from, because .forEach doesnt work on numberEls.  numberEls is an HTMLcollection
+  Array.from(numberEls).forEach((el) => {
+    el.innerText = actualNumber;
+  })
 }
 
 function addToIngrCount(evt) { //add to placeholder
@@ -85,19 +89,24 @@ function addToIngrCount(evt) { //add to placeholder
 }
 
 
+
+
 function minusBtnCallBack(evt) {
   minusFromTradeGoodCount();
   minusFromIngrCount(evt);
 }
 
 function minusFromTradeGoodCount() {
-  let numberEl = document.getElementById("amtTradeGood");
-  let actualNumber = parseInt(numberEl.innerText);
+  let numberEls = document.getElementsByClassName("amtTradeGood");
+  let actualNumber = parseInt(numberEls[0].innerText);
   actualNumber--;
   if (actualNumber < 1) {
     actualNumber = 1;
   }
-  numberEl.innerText = actualNumber;
+
+  Array.from(numberEls).forEach((el) => {
+    el.innerText = actualNumber;
+  })
 }
 
 function minusFromIngrCount(evt) {
@@ -120,11 +129,17 @@ function minusFromIngrCount(evt) {
 }
 
 
-function updateCurrentlyMaking(tradegoodListObject, tradegood) {
-  let amtEl = document.getElementById("amtTradeGood");
-  amtEl.innerHTML = "1";
-  let nameEl = document.getElementById("tradeGoodNameInputDiv");
-  nameEl.innerHTML = `${tradegoodListObject[tradegood].id}`;
+function updateCurrentlyMakingStatement(tradegoodListObject, tradegood) {
+  let amtEls = document.getElementsByClassName("amtTradeGood");
+  console.log(amtEls);
+  Array.from(amtEls).forEach((el) => {
+    el.innerHTML = '1';
+  });
+
+  let nameEls = document.getElementsByClassName("tradeGoodNameInputDiv");
+  Array.from(nameEls).forEach((el) => {
+    el.innerHTML = `${tradegoodListObject[tradegood].id}`;
+  });
 }
 
 
