@@ -70,7 +70,6 @@ function addToTradeGoodCount() { //Changes the count
 
 function addToIngrCount(evt) { //add to placeholder
   let theTGObject = TradeGoods[tradegoodChosen];
-  console.log(`${theTGObject.id}`)
 
   theTGObject.ingredients.forEach((ingr) => {
     //update the placeholders
@@ -82,10 +81,7 @@ function addToIngrCount(evt) { //add to placeholder
     //update the NeedInv with the new amount the user needs to satisfy their goals
     //Because of how the setters work, this HAS to be =, not +=, to work properly
     NeededInv[ingr] = TradeGoods[tradegoodChosen][ingr];
-    console.log(`The amount of ${ingr} in the NeededInv is ${NeededInv[ingr]}`);
   });
-
-
 }
 
 
@@ -117,8 +113,9 @@ function minusFromIngrCount(evt) {
     }
     el.placeholder = placeholderNumber;
 
+    //update the NeededInv object
+    //Because of how the setters work, this HAS to be = -amt, not -=, to work properly
     NeededInv[ingr] = -TradeGoods[tradegoodChosen][ingr];
-    console.log(`The amount of ${ingr} in the NeededInv is ${NeededInv[ingr]}`);
   })
 }
 

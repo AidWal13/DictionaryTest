@@ -657,13 +657,8 @@ export class RemainingInventory extends Inventory {
 
   updateWhatsRemaining(userinv, neededinv) {
     this.relevantIngrs.forEach((ingredient) => {
-      console.log(`Within updateWhatsRemaining for ${ingredient}`);
-      console.log(`user inventory ingredient : ${userinv[ingredient]}`)
-
       this[ingredient] = userinv[ingredient] - neededinv[ingredient];
-
     });
-    console.log(this);
   }
 
   createResultElements(location, tradegoodListObject, tradegood) {
