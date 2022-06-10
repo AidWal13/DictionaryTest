@@ -2,17 +2,15 @@
     box-sizing: border-box;
 }
 
-body {color: black;}
+body {color: white; background-color: black;}
 
 #topRightSec {
-    position: absolute;
-    top: 2%;
-    right: 2%;
+    height: auto;
 }
 
 h1 {
     font-family: elevon, sans-serif;
-    font-size: 4rem;
+    font-size: 3.25rem;
     font-weight: 800;
     font-style: normal;
     margin: 20px 0;
@@ -31,7 +29,43 @@ h3 {
     font-weight: 400;
     font-style: normal;
 }
+.metabtn {
+    padding-top: 3.5%;
+    padding-bottom: 3.5%;
+    width: 48%;
+}
+
+#ingrArticleOptions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ingrArticle {
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 5% auto;
+}
+
+.option {
+    justify-self: center;
+}
+
+.tradegoodImg {
+    max-height: 100px;
+    width:fit-content;
+    display: block;
+    margin: 0 auto;
+    border: 3px white solid;
+    border-radius: 6px;
+}
 
 .ingrInputDiv {
     padding: 1rem;
+    align-items: center;
+    display: flex;
+}
+
+.ingrPic {
+    max-width: 100px;
 }
