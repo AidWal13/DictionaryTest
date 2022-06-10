@@ -1,0 +1,23 @@
+{
+  "name": "nomansskycalc",
+  "version": "1.0.0",
+  "description": "Calculator built to help people know when they have enough component parts to build the more complex items in the game \"No Man's Sky\"",
+  "main": "index.html",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AidWal13/DictionaryTest.git"
+  },
+  "author": "Aidan Walsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AidWal13/DictionaryTest/issues"
+  },
+  "homepage": "https://github.com/AidWal13/DictionaryTest#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}

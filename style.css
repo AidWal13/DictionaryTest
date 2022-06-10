@@ -2,7 +2,11 @@
     box-sizing: border-box;
 }
 
-body {color: white; background-color: black;}
+body {
+    color: white; 
+    background-color: black;
+    margin: 2%;
+}
 
 #topRightSec {
     height: auto;
@@ -10,9 +14,11 @@ body {color: white; background-color: black;}
 
 h1 {
     font-family: elevon, sans-serif;
-    font-size: 3.25rem;
+    font-size: 3rem;
+    line-height: 3rem;
     font-weight: 800;
     font-style: normal;
+    text-align: center;
     margin: 20px 0;
 }
 
@@ -29,10 +35,16 @@ h3 {
     font-weight: 400;
     font-style: normal;
 }
+
+#topRightSec {
+    margin: 0 auto;
+}
+
 .metabtn {
     padding-top: 3.5%;
     padding-bottom: 3.5%;
-    width: 48%;
+    width: 46%;
+    margin: 0 1.5%;
 }
 
 #ingrArticleOptions {
