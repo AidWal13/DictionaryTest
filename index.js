@@ -33,15 +33,16 @@ ingrButtons.forEach((optionBtn) => {
     });
 });
 
+
 let plusBtn = document.getElementById('plus');
 plusBtn.addEventListener('click', (evt) => {
-  addBtnCallBack(TradeGoods, tradegoodChosen);
+  addBtnCallBack(TradeGoods, tradegoodChosen, NeededInv);
 });
 
 
 let minusBtn = document.getElementById('minus');
 minusBtn.addEventListener('click', () => {
-  minusBtnCallBack(TradeGoods, tradegoodChosen);
+  minusBtnCallBack(TradeGoods, tradegoodChosen, NeededInv);
 } );
 
 
@@ -69,14 +70,22 @@ function addToTradeGoodCount() { //Changes the count
 
 function addToIngrCount(evt) { //add to placeholder
   let theTGObject = TradeGoods[tradegoodChosen];
-  
-  //update the placeholders
+  console.log(`${theTGObject.id}`)
+
   theTGObject.ingredients.forEach((ingr) => {
+    //update the placeholders
     let el = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
     let placeholderNumber = parseInt(el.placeholder);
     placeholderNumber += TradeGoods[tradegoodChosen][ingr];
     el.placeholder = placeholderNumber;
-  })
+
+    //update the NeedInv with the new amount the user needs to satisfy their goals
+    //Because of how the setters work, this HAS to be =, not +=, to work properly
+    NeededInv[ingr] = TradeGoods[tradegoodChosen][ingr];
+    console.log(`The amount of ${ingr} in the NeededInv is ${NeededInv[ingr]}`);
+  });
+
+
 }
 
 
@@ -89,7 +98,7 @@ function minusFromTradeGoodCount() {
   let numberEl = document.getElementById("amtTradeGood");
   let actualNumber = parseInt(numberEl.innerText);
   actualNumber--;
-  if(actualNumber < 1) {
+  if (actualNumber < 1) {
     actualNumber = 1;
   }
   numberEl.innerText = actualNumber;
@@ -107,6 +116,9 @@ function minusFromIngrCount(evt) {
       placeholderNumber = TradeGoods[tradegoodChosen][ingr];
     }
     el.placeholder = placeholderNumber;
+
+    NeededInv[ingr] = -TradeGoods[tradegoodChosen][ingr];
+    console.log(`The amount of ${ingr} in the NeededInv is ${NeededInv[ingr]}`);
   })
 }
 
@@ -131,7 +143,6 @@ function createIngrInputs(tradegoodListObject, tradegood) {
         console.log(`About to make input element for ${ingr}`);
 
         //ELEMENT IS MADE HERE
-        //Because of how the setters work, this HAS to be =, not +=, to work properly
         makeIngrInput(tradegoodListObject, tradegood, ingr);
 
         console.log(`Made input for ${ingr}.`);
