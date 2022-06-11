@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Calculator built to help people know when they have enough component parts to build the more complex items in the game \"No Man's Sky\"",
   "main": "index.html",
-  "devDependencies": {},
+  "devDependencies": {
+    
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

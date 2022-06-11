@@ -5,12 +5,8 @@
 body {
     color: white; 
     background-color: black;
-    margin: 2%;
 }
 
-#topRightSec {
-    height: auto;
-}
 
 h1 {
     font-family: elevon, sans-serif;
@@ -28,10 +24,9 @@ h2 {
     font-weight: 700;
     font-style: normal;
 }
-
+/*
 h3 {
     font-size: 1.3rem;
-    /*font-family: elevon, sans-serif;*/
     font-weight: 400;
     font-style: normal;
 }
@@ -80,4 +75,4 @@ h3 {
 
 .ingrPic {
     max-width: 100px;
-}
+}*/
