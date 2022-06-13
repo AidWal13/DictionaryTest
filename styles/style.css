@@ -113,6 +113,16 @@ h2 {
     height: 30%;
 }
 
+/*----------------------RESULTS SECTION----------------------*/
+
+h3 a {
+    color: #a03d3d;
+}
+
+h3 a:visited {
+    color: #591d6b;
+}
+
 /*
 h3 {
     font-size: 1.3rem;
