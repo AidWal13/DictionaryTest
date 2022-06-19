@@ -5,6 +5,8 @@
 }
 
 body {
+    font-family: elza-text, sans-serif;
+    font-weight: 400;
     color: white; 
     background-color: black;
     max-width: 450px;
@@ -16,6 +18,7 @@ h1, h2 {
 }
 
 /*----------------------HEADER----------------------*/
+
 #nmsLogo {
     display: block;
     width: 90%;
@@ -108,9 +111,34 @@ h2 {
 
 /*----------------------INGREDIENT INPUT SECTION----------------------*/
 
+.ingrInputDiv {
+    display: flex;
+}
+
 .ingrPic {
     width: 30%;
     height: 30%;
+}
+
+.ingrInputRightDiv {
+    margin: auto 0;
+}
+
+.ingrInputRightDiv label{
+    display: block;
+    font-family: fenwick, sans-serif;
+    text-transform: capitalize;
+}
+
+.ingrInputRightDiv input {
+    font-family: fenwick, sans-serif;
+    font-weight: 300;
+}
+
+#ingredientSubmit {
+    font-family: elza-text, sans-serif;
+    text-transform: uppercase;
+    padding: 15px 20px;
 }
 
 /*----------------------RESULTS SECTION----------------------*/

@@ -41,7 +41,7 @@ plusBtn.addEventListener('click', (evt) => {
 
 
 let minusBtn = document.getElementById('minus');
-minusBtn.addEventListener('click', () => {
+minusBtn.addEventListener('click', (evt) => {
   minusBtnCallBack(TradeGoods, tradegoodChosen, NeededInv);
 } );
 
@@ -58,7 +58,8 @@ document.getElementById("helpButton").addEventListener('click', helpButtonActiva
 //Functions
 function addBtnCallBack(evt) {
   addToTradeGoodCount();
-  addToIngrCount(evt);
+  addToIngrCount(TradeGoods, tradegoodChosen, NeededInv);
+  console.log(NeededInv);
 }
 
 function addToTradeGoodCount() { //Changes the count
@@ -72,9 +73,59 @@ function addToTradeGoodCount() { //Changes the count
   })
 }
 
-function addToIngrCount(evt) { //add to placeholder
-  let theTGObject = TradeGoods[tradegoodChosen];
+function addToIngrCount(tradegoodListObject, tradegood, shoppingListInventory) { //add to placeholder
 
+  tradegood = tradegood.replace(/\s/g, '');
+
+  if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
+
+    tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+      
+      //update the placeholders
+      let inputEl = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
+      let placeholderNumber = parseInt(inputEl.placeholder);
+
+      placeholderNumber += tradegoodListObject[tradegood][ingr];
+      inputEl.placeholder = placeholderNumber;
+
+      //update the NeedInv with the new amount the user needs to satisfy their goals
+      //Because of how the setters work, this HAS to be =, not +=, to work properly
+      NeededInv[ingr] = tradegoodListObject[tradegood][ingr];
+
+    });
+
+    return;
+
+  } 
+  else 
+  {
+
+    tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+      addToIngrCount(tradegoodListObject, ingr, shoppingListInventory);
+    });
+
+  }
+
+
+
+
+  /*const relevantElsCollection = document.getElementsByClassName('ingrInput');
+  const relevantElsArray = Array.from(relevantElsCollection);
+
+  relevantElsArray.forEach((ingrEl) => {
+    //get name for tradegood object access
+    let ingrName = ingrEl.name;
+
+    let placeholderNumber = parseInt(ingrEl.placeholder);
+    placeholderNumber += TradeGoods[tradegoodChosen][ingrName];
+    ingrEl.placeholder = placeholderNumber;
+
+    //update the NeedInv with the new amount the user needs to satisfy their goals
+    //Because of how the setters work, this HAS to be =, not +=, to work properly
+    NeededInv[ingrName] = TradeGoods[tradegoodChosen][ingrName];
+  })*/
+  
+/*
   theTGObject.ingredients.forEach((ingr) => {
     //update the placeholders
     let el = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
@@ -86,6 +137,36 @@ function addToIngrCount(evt) { //add to placeholder
     //Because of how the setters work, this HAS to be =, not +=, to work properly
     NeededInv[ingr] = TradeGoods[tradegoodChosen][ingr];
   });
+
+  console.log(`Within addToIngrCount with tradegoodchosen as ${tradegoodChosen}`);
+
+  let theTGObject = TradeGoods[tradegoodChosen];
+
+  if (theTGObject.baseLevel || !theTGObject) {
+
+    theTGObject.ingredients.forEach((ingr) => {
+      
+      let el = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
+      let placeholderNumber = parseInt(el.placeholder);
+      placeholderNumber += theTGObject[ingr];
+      el.placeholder = placeholderNumber;
+
+      //update the NeedInv with the new amount the user needs to satisfy their goals
+      //Because of how the setters work, this HAS to be =, not +=, to work properly
+      NeededInv[ingr] = theTGObject[ingr];
+    });
+
+    return;
+
+  } 
+  else 
+  {
+
+    theTGObject.ingredients.forEach((ingr) => {
+      addToIngrCount(TradeGoods, ingr, NeededInv);
+    });
+
+  }*/
 }
 
 
@@ -93,7 +174,8 @@ function addToIngrCount(evt) { //add to placeholder
 
 function minusBtnCallBack(evt) {
   minusFromTradeGoodCount();
-  minusFromIngrCount(evt);
+  minusFromIngrCount(TradeGoods, tradegoodChosen, NeededInv);
+  console.log(NeededInv);
 }
 
 function minusFromTradeGoodCount() {
@@ -109,8 +191,71 @@ function minusFromTradeGoodCount() {
   })
 }
 
-function minusFromIngrCount(evt) {
-  let theTGObject = TradeGoods[tradegoodChosen];
+function minusFromIngrCount(tradegoodListObject, tradegood, shoppingListInventory) {
+  tradegood = tradegood.replace(/\s/g, '');
+
+  if (tradegoodListObject[tradegood].baseLevel || !tradegoodListObject[tradegood]) {
+
+    tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+      
+      //update the placeholders
+      let inputEl = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
+      let placeholderNumber = parseInt(inputEl.placeholder);
+
+      placeholderNumber -= tradegoodListObject[tradegood][ingr];
+
+      if (placeholderNumber < tradegoodListObject[tradegood][ingr]) {
+        placeholderNumber = tradegoodListObject[tradegood][ingr];
+      }
+      inputEl.placeholder = placeholderNumber;
+
+      //update the NeedInv with the new amount the user needs to satisfy their goals
+      //Because of how the setters work, this HAS to be =, not +=, to work properly
+      
+      NeededInv[ingr] = -tradegoodListObject[tradegood][ingr];
+
+      if (NeededInv[ingr] < tradegoodListObject[tradegood][ingr]) {
+        NeededInv[ingr] = tradegoodListObject[tradegood][ingr];
+      }
+    });
+
+    return;
+
+  } 
+  else 
+  {
+
+    tradegoodListObject[tradegood].ingredients.forEach((ingr) => {
+      minusFromIngrCount(tradegoodListObject, ingr, shoppingListInventory);
+    });
+
+  }
+
+
+
+
+  /*
+  const relevantElsCollection = document.getElementsByClassName('ingrInput');
+  const relevantElsArray = Array.from(relevantElsCollection);
+
+  relevantElsArray.forEach((ingrEl) => {
+    //get name for tradegood object access
+    let ingrName = ingrEl.name;
+
+    let placeholderNumber = parseInt(ingrEl.placeholder);
+    placeholderNumber -= TradeGoods[tradegoodChosen][ingrName];
+    if (placeholderNumber < TradeGoods[tradegoodChosen][ingrName]) {
+      placeholderNumber = TradeGoods[tradegoodChosen][ingrName];
+    }
+    ingrEl.placeholder = placeholderNumber;
+
+    //update the NeedInv with the new amount the user needs to satisfy their goals
+    //Because of how the setters work, this HAS to be =, not +=, to work properly
+    NeededInv[ingrName] = -TradeGoods[tradegoodChosen][ingrName];
+  })*/
+
+
+  /*let theTGObject = TradeGoods[tradegoodChosen];
   
   //update the placeholders
   theTGObject.ingredients.forEach((ingr) => {
@@ -126,7 +271,39 @@ function minusFromIngrCount(evt) {
     //Because of how the setters work, this HAS to be = -amt, not -=, to work properly
     NeededInv[ingr] = -TradeGoods[tradegoodChosen][ingr];
   })
+
+  let theTGObject = TradeGoods[tradegoodChosen];
+
+  if (theTGObject.baseLevel || !theTGObject) {
+
+    theTGObject.ingredients.forEach((ingr) => {
+      
+      let el = document.querySelector(`.ingrInputDiv #${ingr.replace(/\s/g, '')}RightDiv input`);
+      let placeholderNumber = parseInt(el.placeholder);
+      placeholderNumber -= TradeGoods[tradegoodChosen][ingr];
+      if (placeholderNumber < TradeGoods[tradegoodChosen][ingr]) {
+        placeholderNumber = TradeGoods[tradegoodChosen][ingr];
+      }
+      el.placeholder = placeholderNumber;
+
+      //update the NeededInv object
+      //Because of how the setters work, this HAS to be = -amt, not -=, to work properly
+      NeededInv[ingr] = -TradeGoods[tradegoodChosen][ingr];
+    });
+
+    return;
+
+  } 
+  else 
+  {
+
+    theTGObject.ingredients.forEach((ingr) => {
+      createIngrInputs(evt);
+    });
+
+  }*/
 }
+
 
 
 function updateCurrentlyMakingStatement(tradegoodListObject, tradegood) {
@@ -141,6 +318,7 @@ function updateCurrentlyMakingStatement(tradegoodListObject, tradegood) {
     el.innerHTML = `${tradegoodListObject[tradegood].id}`;
   });
 }
+
 
 
 function createIngrInputs(tradegoodListObject, tradegood) {
