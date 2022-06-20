@@ -80,7 +80,7 @@ function updateCurrentlyMakingStatement(tradegoodListObject, tradegood) {
 
 
 
-function createIngrInputs(tradegoodListObject, tradegood) {
+function createIngrInputs(tradegoodListObject, tradegood) { //function that uses the function, "makeIngrInput", to create all the inputs where the user will 
   tradegood = tradegood.replace(/\s/g, '');
 
   console.log(`Selected trade good ${tradegood}'s base level is ${tradegoodListObject[tradegood].baseLevel}`);
@@ -112,7 +112,7 @@ function createIngrInputs(tradegoodListObject, tradegood) {
 }
 
 
-function makeIngrInput(tradegoodListObject, tradegood, ingredient) {
+function makeIngrInput(tradegoodListObject, tradegood, ingredient) { // Actually makes the individual Inputs
   console.log(`Within Making the Input function: ${tradegoodListObject[tradegood].name}, ${ingredient.replace(/\s/g, '')}`);
 
   //if an input element exists with the id name of the ingredient input into this function, add to the placeholder and return

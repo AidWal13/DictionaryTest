@@ -17,6 +17,9 @@ h1, h2 {
     font-family: good-times, sans-serif;
 }
 
+.amtTradeGood, .tradeGoodNameInputDiv {
+    font-weight: bolder;
+}
 /*----------------------HEADER----------------------*/
 
 #nmsLogo {
@@ -53,6 +56,7 @@ h2 {
     font-weight: 500;
     letter-spacing: 2px;
     font-style: normal;
+    text-align: center;
 }
 
 #helpSection p {
@@ -61,6 +65,14 @@ h2 {
 }
 
 /*----------------------TRADE GOOD OPTIONS----------------------*/
+
+h3 {
+    font-size: 1.5rem;
+}
+
+#divOfOptions {
+    margin: 0 3%;
+}
 
 .ingrArticle {
     display: flex;
@@ -75,7 +87,6 @@ h2 {
     border: 3px white solid;
     border-radius: 6px;
     box-shadow: white 1px 1px 10px;
-    
 }
 
 .option {
@@ -111,13 +122,21 @@ h2 {
 
 /*----------------------INGREDIENT INPUT SECTION----------------------*/
 
+#divOfInputs {
+    margin: 0 3%;
+}
+
 .ingrInputDiv {
     display: flex;
+    margin: 1rem auto;
 }
 
 .ingrPic {
     width: 30%;
     height: 30%;
+    border: #888 solid 3px;
+    border-radius: 8px;
+    margin-right: 2%;
 }
 
 .ingrInputRightDiv {
@@ -125,6 +144,7 @@ h2 {
 }
 
 .ingrInputRightDiv label{
+    font-size: 24px;
     display: block;
     font-family: fenwick, sans-serif;
     text-transform: capitalize;
