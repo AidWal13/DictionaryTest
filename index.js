@@ -1,5 +1,5 @@
-import { Inventory , UserInventory , ShoppingListInventory, RemainingInventory } from './Inventory.js';
-import * as TradeGoods from './TradeGoods.js';
+import { Inventory , UserInventory , ShoppingListInventory, RemainingInventory } from './inventory.js';
+import * as TradeGoods from './tradeGoods.js';
 import {addToTradeGoodCount, addToIngrCount, minusFromTradeGoodCount, minusFromIngrCount } from './plusMinusBtns.js';
 
 //ACTUAL CODING -------------------------------------------------------------------------
