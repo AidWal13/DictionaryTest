@@ -1,5 +1,5 @@
 # No Man's Sky Trade Good Calculator
-Go to this link to use the calculator: <a href="https://aidwal13.github.io/No-Mans-Sky-Trade-Good-Calculator" target="_blank">Link</a> 
+Control+Click on this link to use the calculator in a new tab: <a href="https://aidwal13.github.io/No-Mans-Sky-Trade-Good-Calculator">Link</a> 
 
 ## For those who have played No Man's Sky:
 I built this calculator to help myself better understand how close I was to building some of the most valuable trade goods in the game.  Whether it's just a few Aronium, or making a Stasis Device, I wanted an interface that could tell me if all the ingredients in my inventory were enough to build what I was looking for.  I hope this helps you as well. 
