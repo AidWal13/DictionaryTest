@@ -171,6 +171,10 @@ h3 a:visited {
     color: #591d6b;
 }
 
+#minus {
+    margin-left: 10px;
+}
+
 /*
 h3 {
     font-size: 1.3rem;
